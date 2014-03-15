@@ -11,10 +11,6 @@ public class gestureController : MonoBehaviour {
 	protected bool recognized = false;
 
 
-	private int colorSelected = 0;
-	private Color color;
-
-
 	// Use this for initialization
 	void Start () {
 	
@@ -51,7 +47,7 @@ public class gestureController : MonoBehaviour {
 		Debug.Log( "doRecognizeSwipe method");
 
 		if(transformToMove != null) {
-			float speed = recognizer.swipeVelocity /100;
+			float speed = recognizer.swipeVelocity / 100;
 			recognized = true;
 			movementController m = (movementController)GetComponent("movementController");
 			m.stopMovement();
@@ -67,29 +63,9 @@ public class gestureController : MonoBehaviour {
 		   transformToMove != null && 
 		   (transformToMove.tag == "cube0" || transformToMove.tag == "cube1" || transformToMove.tag == "cube2" || transformToMove.tag == "cube3") ){
 
-			Debug.Log("Change COlor!!!!");
-
-			colorSelected ++;
-			if (colorSelected == 3) colorSelected = 0;
-			
-			switch(colorSelected){
-			case 0:
-				color = Color.yellow;
-				break;
-			case 1:
-				color = Color.red;
-				break;
-			case 2:
-				color = Color.blue;
-				break;
-				
-			}
-			
-			GameObject.FindWithTag ("cube0").renderer.material.color = color;
-			GameObject.FindWithTag ("cube1").renderer.material.color = color;
-			GameObject.FindWithTag ("cube2").renderer.material.color = color;
-			GameObject.FindWithTag ("cube3").renderer.material.color = color;
-
+			Debug.Log("Change Color!!!!");
+			colorController c = (colorController)GetComponent("colorController");
+			c.changeColor();
 		}
 		
 	}
